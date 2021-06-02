@@ -1,9 +1,20 @@
 <template>
   <div class="com-container">
     <div class="title" :style="comStyle">
-      <span>{{'┃ ' + showTitle}}</span><span :style="comStyle" class="iconfont title-icon" @click="showChice = !showChice">&#xe6eb;</span>
+      <span>{{ "┃ " + showTitle }}</span
+      ><span
+        :style="comStyle"
+        class="iconfont title-icon"
+        @click="showChice = !showChice"
+        >&#xe6eb;</span
+      >
       <div class="select-con" v-show="showChice" :style="marginStyle">
-        <div class="select-item" v-for="item in selectTypes" :key="item.key" @click="handleSelect(item.key)">
+        <div
+          class="select-item"
+          v-for="item in selectTypes"
+          :key="item.key"
+          @click="handleSelect(item.key)"
+        >
           {{ item.text }}
         </div>
       </div>
@@ -19,8 +30,8 @@ export default {
       chartInstane: null,
       allData: null, //从服务器获取的所有数据
       showChice: false, //是否显示可选项
-      choiceType: 'map',
-      titleFontSize: 0//指明标题字体大小
+      choiceType: "map",
+      titleFontSize: 0, //指明标题字体大小
     };
   },
   mounted() {
@@ -37,27 +48,27 @@ export default {
       if (!this.allData) {
         return [];
       } else {
-        return this.allData.type.filter(item => item.key !== this.choiceType)
+        return this.allData.type.filter((item) => item.key !== this.choiceType);
       }
     },
-    showTitle () {
+    showTitle() {
       if (!this.allData) {
-        return ''
-      }else {
-        return this.allData[this.choiceType].title
+        return "";
+      } else {
+        return this.allData[this.choiceType].title;
       }
     },
     // 设置给标题的样式
-    comStyle () {
+    comStyle() {
       return {
-        fontSize: this.titleFontSize + 'px'
-      }
+        fontSize: this.titleFontSize + "px",
+      };
     },
-    marginStyle () {
+    marginStyle() {
       return {
-        marginLeft: this.titleFontSize + 'px'
-      }
-    }
+        marginLeft: this.titleFontSize + "px",
+      };
+    },
   },
   methods: {
     initChart() {
@@ -142,25 +153,25 @@ export default {
       this.chartInstane.setOption(dataOption);
     },
     screenAdapter() {
-      this.titleFontSize = this.$refs.trend_ref.offsetWidth / 100 * 3.6
+      this.titleFontSize = (this.$refs.trend_ref.offsetWidth / 100) * 3.6;
       const adapterOption = {
         legend: {
           itemWidth: this.titleFontSize,
           itemHeight: this.titleFontSize,
           itemGap: this.titleFontSize,
           textStyle: {
-            fontSize: this.titleFontSize / 2
-          }
-        }
+            fontSize: this.titleFontSize / 2,
+          },
+        },
       };
       this.chartInstane.setOption(adapterOption);
       this.chartInstane.resize();
     },
     handleSelect(currentType) {
-      this.choiceType = currentType
-      this.updataChart()
-      this.showChice = false
-    }
+      this.choiceType = currentType;
+      this.updataChart();
+      this.showChice = false;
+    },
   },
 };
 </script>
@@ -176,7 +187,7 @@ export default {
     margin-left: 10px;
     cursor: pointer;
   }
-  .select-con{
+  .select-con {
     background-color: #222733;
   }
 }
