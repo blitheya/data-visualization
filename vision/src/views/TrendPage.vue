@@ -1,6 +1,6 @@
 <template>
   <div class="com-page">
-
+    <trend></trend>
   </div>
 </template>
 
